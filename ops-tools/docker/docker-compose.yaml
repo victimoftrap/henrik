@@ -1,0 +1,29 @@
+version: "3.0"
+
+networks:
+  mikael-net:
+
+services:
+  mikael_nginx:
+#    entrypoint: ["echo", "Service NGINX disabled"]
+    container_name: mikael_nginx
+    build:
+      context: "."
+      dockerfile: "./nginx/Dockerfile"
+    restart: "on-failure"
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/mikael.conf:/etc/nginx/conf.d/mikael.conf
+    network_mode: "host"
+
+  mikael_db:
+    container_name: mikael_db
+    image: postgres
+    restart: "on-failure"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=ycps_db2
+      - POSTGRES_PASSWORD=ycps_pass
+      - POSTGRES_USER=ycps_user
