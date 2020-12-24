@@ -1,4 +1,4 @@
-package com.github.victimoftrap.mikael.model.events;
+package com.github.victimoftrap.henrik.model.events;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

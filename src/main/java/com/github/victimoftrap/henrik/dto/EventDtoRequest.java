@@ -1,4 +1,4 @@
-package com.github.victimoftrap.mikael.dto;
+package com.github.victimoftrap.henrik.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

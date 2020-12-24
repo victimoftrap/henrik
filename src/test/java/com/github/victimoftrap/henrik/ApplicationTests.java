@@ -1,10 +1,10 @@
-package com.github.victimoftrap.mikael;
+package com.github.victimoftrap.henrik;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MikaelApplicationTests {
+class ApplicationTests {
 
 	@Test
 	void contextLoads() {

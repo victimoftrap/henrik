@@ -1,9 +1,9 @@
-package com.github.victimoftrap.mikael.service;
+package com.github.victimoftrap.henrik.service;
 
-import com.github.victimoftrap.mikael.dto.EventDtoRequest;
-import com.github.victimoftrap.mikael.model.*;
-import com.github.victimoftrap.mikael.model.events.*;
-import com.github.victimoftrap.mikael.repository.*;
+import com.github.victimoftrap.henrik.dto.EventDtoRequest;
+import com.github.victimoftrap.henrik.model.*;
+import com.github.victimoftrap.henrik.model.events.*;
+import com.github.victimoftrap.henrik.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

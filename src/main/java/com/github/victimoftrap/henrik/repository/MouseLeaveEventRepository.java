@@ -1,6 +1,6 @@
-package com.github.victimoftrap.mikael.repository;
+package com.github.victimoftrap.henrik.repository;
 
-import com.github.victimoftrap.mikael.model.events.MouseLeaveEvent;
+import com.github.victimoftrap.henrik.model.events.MouseLeaveEvent;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

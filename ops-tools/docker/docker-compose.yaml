@@ -1,12 +1,12 @@
 version: "3.0"
 
 networks:
-  mikael-net:
+  henrik-net:
 
 services:
-  mikael_nginx:
+  henrik_nginx:
 #    entrypoint: ["echo", "Service NGINX disabled"]
-    container_name: mikael_nginx
+    container_name: henrik_nginx
     build:
       context: "."
       dockerfile: "./nginx/Dockerfile"
@@ -14,11 +14,11 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx/mikael.conf:/etc/nginx/conf.d/mikael.conf
+      - ./nginx/henrik.conf:/etc/nginx/conf.d/henrik.conf
     network_mode: "host"
 
-  mikael_db:
-    container_name: mikael_db
+  henrik_db:
+    container_name: henrik_db
     image: postgres
     restart: "on-failure"
     ports:

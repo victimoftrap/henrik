@@ -1,7 +1,7 @@
-package com.github.victimoftrap.mikael.controller;
+package com.github.victimoftrap.henrik.controller;
 
-import com.github.victimoftrap.mikael.dto.EventDtoRequest;
-import com.github.victimoftrap.mikael.service.EventService;
+import com.github.victimoftrap.henrik.dto.EventDtoRequest;
+import com.github.victimoftrap.henrik.service.EventService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

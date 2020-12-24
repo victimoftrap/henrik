@@ -1,6 +1,6 @@
-package com.github.victimoftrap.mikael.model.events;
+package com.github.victimoftrap.henrik.model.events;
 
-import com.github.victimoftrap.mikael.model.EventType;
+import com.github.victimoftrap.henrik.model.EventType;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;

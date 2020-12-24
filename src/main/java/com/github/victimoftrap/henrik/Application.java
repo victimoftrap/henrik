@@ -1,11 +1,11 @@
-package com.github.victimoftrap.mikael;
+package com.github.victimoftrap.henrik;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MikaelApplication {
+public class Application {
 	public static void main(String[] args) {
-		SpringApplication.run(MikaelApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }

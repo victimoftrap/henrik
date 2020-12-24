@@ -4,9 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.github.victimoftrap</groupId>
-	<artifactId>mikael</artifactId>
+	<artifactId>henrik</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mikael</name>
+	<name>henrik</name>
 	<description>Collecting events</description>
 
 	<parent>

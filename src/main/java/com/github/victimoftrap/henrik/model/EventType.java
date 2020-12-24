@@ -1,4 +1,4 @@
-package com.github.victimoftrap.mikael.model;
+package com.github.victimoftrap.henrik.model;
 
 public enum EventType {
     TAB_EVENT("TAB_EVENT"),
