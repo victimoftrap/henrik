@@ -16,10 +16,10 @@ public class ProblemChangedEvent {
     @Type(type = "pg-uuid")
     private UUID id;
 
-    @Column(name = "title")
+    @Column(name = "prev_problem_title")
     private String title;
 
-    @Column(name = "url")
+    @Column(name = "prev_problem_url")
     private String url;
 
     public ProblemChangedEvent() {
