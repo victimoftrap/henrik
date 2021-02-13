@@ -40,8 +40,8 @@ public class EventService {
 
         var mainEvent = new EventDescription(
                 UUID.randomUUID(),
-                0,
-                0,
+                eventDtoRequest.getContestId(),
+                eventDtoRequest.getUserId(),
                 eventType,
                 UUID.randomUUID()
         );
