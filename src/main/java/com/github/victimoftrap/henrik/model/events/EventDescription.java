@@ -4,6 +4,7 @@ import com.github.victimoftrap.henrik.model.EventType;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Entity
@@ -20,6 +21,9 @@ public class EventDescription {
     @Column(name = "user_id")
     private long userId;
 
+    @Column(name = "created_at")
+    private ZonedDateTime createdAt;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private EventType type;
@@ -34,11 +38,13 @@ public class EventDescription {
     public EventDescription(final UUID id,
                             final long contestId,
                             final long userId,
+                            final ZonedDateTime createdAt,
                             final EventType type,
                             final UUID eventId) {
         this.id = id;
         this.contestId = contestId;
         this.userId = userId;
+        this.createdAt = createdAt;
         this.type = type;
         this.eventId = eventId;
     }
@@ -53,6 +59,10 @@ public class EventDescription {
 
     public long getUserId() {
         return userId;
+    }
+
+    public ZonedDateTime getCreatedAt() {
+        return createdAt;
     }
 
     public EventType getType() {
@@ -73,6 +83,10 @@ public class EventDescription {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public void setCreatedAt(ZonedDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public void setType(EventType type) {

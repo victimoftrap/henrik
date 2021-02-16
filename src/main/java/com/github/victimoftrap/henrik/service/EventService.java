@@ -8,6 +8,8 @@ import com.github.victimoftrap.henrik.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @Service("EventService")
@@ -38,10 +40,15 @@ public class EventService {
         final var eventType = EventType.valueOf(eventDtoRequest.getType());
         final var eventJsonNode = eventDtoRequest.getEvent();
 
+        var createdAt = ZonedDateTime.parse(
+                eventDtoRequest.getCreatedAt(),
+                DateTimeFormatter.ISO_ZONED_DATE_TIME
+        );
         var mainEvent = new EventDescription(
                 UUID.randomUUID(),
                 eventDtoRequest.getContestId(),
                 eventDtoRequest.getUserId(),
+                createdAt,
                 eventType,
                 UUID.randomUUID()
         );
@@ -56,11 +63,11 @@ public class EventService {
             );
             tabEventRepository.save(tabEvent);
         }
-        if (eventType == EventType.MOUSE_ENTER_EVENT ) {
+        if (eventType == EventType.MOUSE_ENTER_EVENT) {
             var mouseEvent = new MouseEnterEvent(mainEvent.getEventId());
             mouseEnterEventRepository.save(mouseEvent);
         }
-        if (eventType == EventType.MOUSE_LEAVE_EVENT ) {
+        if (eventType == EventType.MOUSE_LEAVE_EVENT) {
             var mouseEvent = new MouseLeaveEvent(mainEvent.getEventId());
             mouseLeaveEventRepository.save(mouseEvent);
         }

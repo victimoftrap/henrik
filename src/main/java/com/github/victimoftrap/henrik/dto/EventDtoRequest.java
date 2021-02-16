@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 public class EventDtoRequest {
     private long contestId;
     private long userId;
+    private String createdAt;
     private String type;
     private JsonNode event;
 
@@ -17,10 +18,12 @@ public class EventDtoRequest {
     public EventDtoRequest(
             @JsonProperty("contestId") final long contestId,
             @JsonProperty("userId") final long userId,
+            @JsonProperty("createdAt") final String createdAt,
             @JsonProperty("type") final String type,
             @JsonProperty("event") final JsonNode event) {
         this.contestId = contestId;
         this.userId = userId;
+        this.createdAt = createdAt;
         this.type = type;
         this.event = event;
     }
@@ -31,6 +34,10 @@ public class EventDtoRequest {
 
     public long getUserId() {
         return userId;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
     }
 
     public String getType() {

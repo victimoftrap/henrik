@@ -1,0 +1,1 @@
+ALTER TABLE event_descriptions ADD COLUMN created_at TIMESTAMP WITH TIME ZONE;
