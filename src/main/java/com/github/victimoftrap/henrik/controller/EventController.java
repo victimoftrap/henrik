@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/events")
 public class EventController {
@@ -25,7 +27,7 @@ public class EventController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public void saveEvent(final @RequestBody EventDtoRequest requestBody) {
+    public void saveEvent(final @RequestBody @Valid EventDtoRequest requestBody) {
         eventService.saveEvent(requestBody);
     }
 }
