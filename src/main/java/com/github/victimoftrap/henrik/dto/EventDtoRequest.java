@@ -10,7 +10,9 @@ import javax.validation.constraints.NotBlank;
 
 public class EventDtoRequest {
     private long contestId;
-    private long userId;
+
+    @NotBlank
+    private String userId;
 
     @NotBlank
     private String createdAt;
@@ -25,7 +27,7 @@ public class EventDtoRequest {
     @JsonCreator
     public EventDtoRequest(
             @JsonProperty("contestId") final long contestId,
-            @JsonProperty("userId") final long userId,
+            @JsonProperty("userId") final String userId,
             @JsonProperty("createdAt") final String createdAt,
             @JsonProperty("type") final String type,
             @JsonProperty("event") final JsonNode event) {
@@ -40,7 +42,7 @@ public class EventDtoRequest {
         return contestId;
     }
 
-    public long getUserId() {
+    public String getUserId() {
         return userId;
     }
 

@@ -1,7 +1,7 @@
 package com.github.victimoftrap.henrik.service;
 
 import com.github.victimoftrap.henrik.dto.EventDtoRequest;
-import com.github.victimoftrap.henrik.model.*;
+import com.github.victimoftrap.henrik.model.EventType;
 import com.github.victimoftrap.henrik.model.events.*;
 import com.github.victimoftrap.henrik.repository.*;
 
@@ -40,6 +40,7 @@ public class EventService {
         final var eventType = EventType.valueOf(eventDtoRequest.getType());
         final var eventJsonNode = eventDtoRequest.getEvent();
 
+        var userId = Long.parseLong(eventDtoRequest.getUserId());
         var createdAt = ZonedDateTime.parse(
                 eventDtoRequest.getCreatedAt(),
                 DateTimeFormatter.ISO_ZONED_DATE_TIME
@@ -47,7 +48,7 @@ public class EventService {
         var mainEvent = new EventDescription(
                 UUID.randomUUID(),
                 eventDtoRequest.getContestId(),
-                eventDtoRequest.getUserId(),
+                userId,
                 createdAt,
                 eventType,
                 UUID.randomUUID()
