@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-@Repository("MainEventRepository")
-public interface MainEventRepository extends JpaRepository<EventDescription, UUID> {
+@Repository("eventRepository")
+public interface EventRepository extends JpaRepository<EventDescription, UUID> {
 }

@@ -1,20 +1,20 @@
 package com.github.victimoftrap.henrik.model.events;
 
+import com.github.victimoftrap.henrik.model.EventDescription;
+import com.github.victimoftrap.henrik.model.EventType;
+
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
-@Entity
-@Table(name = "tab_events")
-public class TabEvent {
+@Entity(name = "tab_events")
+public class TabEvent extends EventDescription {
     @Id
-    @Column(name = "id", unique = true)
+    @Column(name = "event_id", unique = true)
     @Type(type = "pg-uuid")
-    private UUID id;
+    private UUID eventId;
 
     @Column(name = "url")
     private String url;
@@ -28,42 +28,51 @@ public class TabEvent {
     public TabEvent() {
     }
 
-    public TabEvent(final UUID id, final String url, final boolean active, final boolean incognito) {
-        this.id = id;
+    public TabEvent(final UUID id,
+                    final long contestId,
+                    final long userId,
+                    final ZonedDateTime createdAt,
+                    final EventType type,
+                    final UUID eventId,
+                    final String url,
+                    final boolean active,
+                    final boolean incognito) {
+        super(id, contestId, userId, createdAt, type, eventId);
+        this.eventId = eventId;
         this.url = url;
         this.active = active;
         this.incognito = incognito;
     }
 
-    public UUID getId() {
-        return id;
+    public UUID getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(final UUID eventId) {
+        this.eventId = eventId;
     }
 
     public String getUrl() {
         return url;
     }
 
+    public void setUrl(final String url) {
+        this.url = url;
+    }
+
     public boolean isActive() {
         return active;
+    }
+
+    public void setActive(final boolean active) {
+        this.active = active;
     }
 
     public boolean isIncognito() {
         return incognito;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public void setIncognito(boolean incognito) {
+    public void setIncognito(final boolean incognito) {
         this.incognito = incognito;
     }
 }

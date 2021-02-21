@@ -1,6 +1,5 @@
-package com.github.victimoftrap.henrik.model.events;
+package com.github.victimoftrap.henrik.model;
 
-import com.github.victimoftrap.henrik.model.EventType;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -9,7 +8,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "event_descriptions")
-public class EventDescription {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class EventDescription {
     @Id
     @Column(name = "id", unique = true)
     @Type(type = "pg-uuid")
@@ -53,47 +53,47 @@ public class EventDescription {
         return id;
     }
 
+    public void setId(final UUID id) {
+        this.id = id;
+    }
+
     public long getContestId() {
         return contestId;
+    }
+
+    public void setContestId(final long contestId) {
+        this.contestId = contestId;
     }
 
     public long getUserId() {
         return userId;
     }
 
+    public void setUserId(final long userId) {
+        this.userId = userId;
+    }
+
     public ZonedDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public void setCreatedAt(final ZonedDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public EventType getType() {
         return type;
     }
 
+    public void setType(final EventType type) {
+        this.type = type;
+    }
+
     public UUID getEventId() {
         return eventId;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setContestId(long contestId) {
-        this.contestId = contestId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public void setCreatedAt(ZonedDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public void setType(EventType type) {
-        this.type = type;
-    }
-
-    public void setEventId(UUID eventId) {
+    public void setEventId(final UUID eventId) {
         this.eventId = eventId;
     }
 }

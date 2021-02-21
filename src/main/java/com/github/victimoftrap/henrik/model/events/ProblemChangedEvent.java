@@ -1,20 +1,20 @@
 package com.github.victimoftrap.henrik.model.events;
 
+import com.github.victimoftrap.henrik.model.EventDescription;
+import com.github.victimoftrap.henrik.model.EventType;
+
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
-@Entity
-@Table(name = "problem_changed_events")
-public class ProblemChangedEvent {
+@Entity(name = "problem_changed_events")
+public class ProblemChangedEvent extends EventDescription {
     @Id
-    @Column(name = "id", unique = true)
+    @Column(name = "event_id", unique = true)
     @Type(type = "pg-uuid")
-    private UUID id;
+    private UUID eventId;
 
     @Column(name = "prev_problem_title")
     private String title;
@@ -25,33 +25,41 @@ public class ProblemChangedEvent {
     public ProblemChangedEvent() {
     }
 
-    public ProblemChangedEvent(final UUID id, final String title, final String url) {
-        this.id = id;
+    public ProblemChangedEvent(final UUID id,
+                               final long contestId,
+                               final long userId,
+                               final ZonedDateTime createdAt,
+                               final EventType type,
+                               final UUID eventId,
+                               final String title,
+                               final String url) {
+        super(id, contestId, userId, createdAt, type, eventId);
+        this.eventId = eventId;
         this.title = title;
         this.url = url;
     }
 
-    public UUID getId() {
-        return id;
+    public UUID getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(final UUID eventId) {
+        this.eventId = eventId;
     }
 
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(final String title) {
+        this.title = title;
+    }
+
     public String getUrl() {
         return url;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setUrl(String url) {
+    public void setUrl(final String url) {
         this.url = url;
     }
 }

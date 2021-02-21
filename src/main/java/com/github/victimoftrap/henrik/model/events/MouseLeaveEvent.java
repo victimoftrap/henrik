@@ -1,30 +1,36 @@
 package com.github.victimoftrap.henrik.model.events;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.github.victimoftrap.henrik.model.EventDescription;
+import com.github.victimoftrap.henrik.model.EventType;
+
+import javax.persistence.*;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
-@Entity
-@Table(name = "mouse_leave_events")
-public class MouseLeaveEvent {
+@Entity(name = "mouse_leave_events")
+public class MouseLeaveEvent extends EventDescription {
     @Id
-    @Column(name = "id", unique = true)
-    private UUID id;
+    @Column(name = "event_id", unique = true)
+    private UUID eventId;
 
     public MouseLeaveEvent() {
     }
 
-    public MouseLeaveEvent(final UUID id) {
-        this.id = id;
+    public MouseLeaveEvent(final UUID id,
+                           final long contestId,
+                           final long userId,
+                           final ZonedDateTime createdAt,
+                           final EventType type,
+                           final UUID eventId) {
+        super(id, contestId, userId, createdAt, type, eventId);
+        this.eventId = eventId;
     }
 
-    public UUID getId() {
-        return id;
+    public UUID getEventId() {
+        return eventId;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setEventId(final UUID eventId) {
+        this.eventId = eventId;
     }
 }
