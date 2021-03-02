@@ -30,7 +30,7 @@ public class ProblemChangedCommand implements ICommand {
                 request.getContestId(),
                 userId,
                 createdAt,
-                EventType.TAB_EVENT,
+                EventType.PROBLEM_CHANGED_EVENT,
                 UUID.randomUUID(),
                 eventJsonNode.get("prevProblemTitle").asText(),
                 eventJsonNode.get("prevProblemUrl").asText()

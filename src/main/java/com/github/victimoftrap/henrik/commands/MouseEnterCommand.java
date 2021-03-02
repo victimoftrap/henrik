@@ -28,7 +28,7 @@ public class MouseEnterCommand implements ICommand {
                 request.getContestId(),
                 userId,
                 createdAt,
-                EventType.TAB_EVENT,
+                EventType.MOUSE_ENTER_EVENT,
                 UUID.randomUUID()
         );
         eventRepository.save(mouseEvent);

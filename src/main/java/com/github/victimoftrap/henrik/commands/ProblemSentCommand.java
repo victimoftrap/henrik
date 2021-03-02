@@ -28,7 +28,7 @@ public class ProblemSentCommand implements ICommand {
                 request.getContestId(),
                 userId,
                 createdAt,
-                EventType.TAB_EVENT,
+                EventType.PROBLEM_SENT_EVENT,
                 UUID.randomUUID(),
                 request.getEvent().get("title").asText()
         );
