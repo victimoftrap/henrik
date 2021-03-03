@@ -31,7 +31,6 @@ public class ProblemChangedCommand implements ICommand {
                 userId,
                 createdAt,
                 EventType.PROBLEM_CHANGED_EVENT,
-                UUID.randomUUID(),
                 eventJsonNode.get("prevProblemTitle").asText(),
                 eventJsonNode.get("prevProblemUrl").asText()
         );

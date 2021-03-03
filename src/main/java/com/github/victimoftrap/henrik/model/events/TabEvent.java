@@ -3,19 +3,14 @@ package com.github.victimoftrap.henrik.model.events;
 import com.github.victimoftrap.henrik.model.EventDescription;
 import com.github.victimoftrap.henrik.model.EventType;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
-@Entity(name = "tab_events")
+@Entity
+@Table(name = "tab_events")
 public class TabEvent extends EventDescription {
-    @Id
-    @Column(name = "event_id", unique = true)
-    @Type(type = "pg-uuid")
-    private UUID eventId;
-
     @Column(name = "url")
     private String url;
 
@@ -33,23 +28,13 @@ public class TabEvent extends EventDescription {
                     final long userId,
                     final ZonedDateTime createdAt,
                     final EventType type,
-                    final UUID eventId,
                     final String url,
                     final boolean active,
                     final boolean incognito) {
-        super(id, contestId, userId, createdAt, type, eventId);
-        this.eventId = eventId;
+        super(id, contestId, userId, createdAt, type);
         this.url = url;
         this.active = active;
         this.incognito = incognito;
-    }
-
-    public UUID getEventId() {
-        return eventId;
-    }
-
-    public void setEventId(final UUID eventId) {
-        this.eventId = eventId;
     }
 
     public String getUrl() {
@@ -74,5 +59,30 @@ public class TabEvent extends EventDescription {
 
     public void setIncognito(final boolean incognito) {
         this.incognito = incognito;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        TabEvent tabEvent = (TabEvent) o;
+        return active == tabEvent.active
+                && incognito == tabEvent.incognito
+                && Objects.equals(url, tabEvent.url);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), url, active, incognito);
+    }
+
+    @Override
+    public String toString() {
+        return "TabEvent{" +
+                "url='" + url + '\'' +
+                ", active=" + active +
+                ", incognito=" + incognito +
+                '}';
     }
 }

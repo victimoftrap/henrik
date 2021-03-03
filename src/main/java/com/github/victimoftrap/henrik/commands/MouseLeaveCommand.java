@@ -28,8 +28,7 @@ public class MouseLeaveCommand implements ICommand {
                 request.getContestId(),
                 userId,
                 createdAt,
-                EventType.MOUSE_LEAVE_EVENT,
-                UUID.randomUUID()
+                EventType.MOUSE_LEAVE_EVENT
         );
         eventRepository.save(mainEvent);
     }

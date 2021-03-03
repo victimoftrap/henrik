@@ -3,23 +3,18 @@ package com.github.victimoftrap.henrik.model.events;
 import com.github.victimoftrap.henrik.model.EventDescription;
 import com.github.victimoftrap.henrik.model.EventType;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
-@Entity(name = "problem_changed_events")
+@Entity
+@Table(name = "problem_changed_events")
 public class ProblemChangedEvent extends EventDescription {
-    @Id
-    @Column(name = "event_id", unique = true)
-    @Type(type = "pg-uuid")
-    private UUID eventId;
-
-    @Column(name = "prev_problem_title")
+    @Column(name = "prev_title")
     private String title;
 
-    @Column(name = "prev_problem_url")
+    @Column(name = "prev_url")
     private String url;
 
     public ProblemChangedEvent() {
@@ -30,21 +25,11 @@ public class ProblemChangedEvent extends EventDescription {
                                final long userId,
                                final ZonedDateTime createdAt,
                                final EventType type,
-                               final UUID eventId,
                                final String title,
                                final String url) {
-        super(id, contestId, userId, createdAt, type, eventId);
-        this.eventId = eventId;
+        super(id, contestId, userId, createdAt, type);
         this.title = title;
         this.url = url;
-    }
-
-    public UUID getEventId() {
-        return eventId;
-    }
-
-    public void setEventId(final UUID eventId) {
-        this.eventId = eventId;
     }
 
     public String getTitle() {
@@ -61,5 +46,27 @@ public class ProblemChangedEvent extends EventDescription {
 
     public void setUrl(final String url) {
         this.url = url;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        ProblemChangedEvent that = (ProblemChangedEvent) o;
+        return Objects.equals(title, that.title) && Objects.equals(url, that.url);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), title, url);
+    }
+
+    @Override
+    public String toString() {
+        return "ProblemChangedEvent{" +
+                "title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }

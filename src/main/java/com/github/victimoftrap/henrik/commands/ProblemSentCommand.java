@@ -29,7 +29,6 @@ public class ProblemSentCommand implements ICommand {
                 userId,
                 createdAt,
                 EventType.PROBLEM_SENT_EVENT,
-                UUID.randomUUID(),
                 request.getEvent().get("title").asText()
         );
         eventRepository.save(sentEvent);

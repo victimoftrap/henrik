@@ -3,19 +3,14 @@ package com.github.victimoftrap.henrik.model.events;
 import com.github.victimoftrap.henrik.model.EventDescription;
 import com.github.victimoftrap.henrik.model.EventType;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
 @Table(name = "problem_sent_events")
 public class ProblemSentEvent extends EventDescription {
-    @Column(name = "id", unique = true)
-    @Type(type = "pg-uuid")
-    private UUID eventId;
-
     @Column(name = "title")
     private String title;
 
@@ -27,19 +22,9 @@ public class ProblemSentEvent extends EventDescription {
                             final long userId,
                             final ZonedDateTime createdAt,
                             final EventType type,
-                            final UUID eventId,
                             final String title) {
-        super(id, contestId, userId, createdAt, type, eventId);
-        this.eventId = eventId;
+        super(id, contestId, userId, createdAt, type);
         this.title = title;
-    }
-
-    public UUID getEventId() {
-        return eventId;
-    }
-
-    public void setEventId(final UUID eventId) {
-        this.eventId = eventId;
     }
 
     public String getTitle() {
@@ -48,5 +33,26 @@ public class ProblemSentEvent extends EventDescription {
 
     public void setTitle(final String title) {
         this.title = title;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        ProblemSentEvent that = (ProblemSentEvent) o;
+        return Objects.equals(title, that.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), title);
+    }
+
+    @Override
+    public String toString() {
+        return "ProblemSentEvent{" +
+                "title='" + title + '\'' +
+                '}';
     }
 }

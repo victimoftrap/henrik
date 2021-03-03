@@ -4,6 +4,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -28,10 +29,6 @@ public abstract class EventDescription {
     @Column(name = "type")
     private EventType type;
 
-    @Column(name = "event_id", unique = true)
-    @Type(type = "pg-uuid")
-    private UUID eventId;
-
     public EventDescription() {
     }
 
@@ -39,14 +36,12 @@ public abstract class EventDescription {
                             final long contestId,
                             final long userId,
                             final ZonedDateTime createdAt,
-                            final EventType type,
-                            final UUID eventId) {
+                            final EventType type) {
         this.id = id;
         this.contestId = contestId;
         this.userId = userId;
         this.createdAt = createdAt;
         this.type = type;
-        this.eventId = eventId;
     }
 
     public UUID getId() {
@@ -89,11 +84,31 @@ public abstract class EventDescription {
         this.type = type;
     }
 
-    public UUID getEventId() {
-        return eventId;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EventDescription that = (EventDescription) o;
+        return contestId == that.contestId
+                && userId == that.userId
+                && Objects.equals(id, that.id)
+                && Objects.equals(createdAt, that.createdAt)
+                && type == that.type;
     }
 
-    public void setEventId(final UUID eventId) {
-        this.eventId = eventId;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, contestId, userId, createdAt, type);
+    }
+
+    @Override
+    public String toString() {
+        return "EventDescription{" +
+                "id=" + id +
+                ", contestId=" + contestId +
+                ", userId=" + userId +
+                ", createdAt=" + createdAt +
+                ", type=" + type +
+                '}';
     }
 }

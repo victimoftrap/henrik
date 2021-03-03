@@ -31,7 +31,6 @@ public class TabCommand implements ICommand {
                 userId,
                 createdAt,
                 EventType.TAB_EVENT,
-                UUID.randomUUID(),
                 eventJsonNode.get("url").asText(),
                 eventJsonNode.get("active").asBoolean(),
                 eventJsonNode.get("incognito").asBoolean()
