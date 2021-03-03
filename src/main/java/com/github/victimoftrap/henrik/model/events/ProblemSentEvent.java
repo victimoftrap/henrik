@@ -1,45 +1,58 @@
 package com.github.victimoftrap.henrik.model.events;
 
-import org.hibernate.annotations.Type;
+import com.github.victimoftrap.henrik.model.EventDescription;
+import com.github.victimoftrap.henrik.model.EventType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.ZonedDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
 @Table(name = "problem_sent_events")
-public class ProblemSentEvent {
-    @Id
-    @Column(name = "id", unique = true)
-    @Type(type = "pg-uuid")
-    private UUID id;
-
+public class ProblemSentEvent extends EventDescription {
     @Column(name = "title")
     private String title;
 
     public ProblemSentEvent() {
     }
 
-    public ProblemSentEvent(final UUID id, final String title) {
-        this.id = id;
+    public ProblemSentEvent(final UUID id,
+                            final long contestId,
+                            final long userId,
+                            final ZonedDateTime createdAt,
+                            final EventType type,
+                            final String title) {
+        super(id, contestId, userId, createdAt, type);
         this.title = title;
-    }
-
-    public UUID getId() {
-        return id;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setTitle(final String title) {
+        this.title = title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        ProblemSentEvent that = (ProblemSentEvent) o;
+        return Objects.equals(title, that.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), title);
+    }
+
+    @Override
+    public String toString() {
+        return "ProblemSentEvent{" +
+                "title='" + title + '\'' +
+                '}';
     }
 }
