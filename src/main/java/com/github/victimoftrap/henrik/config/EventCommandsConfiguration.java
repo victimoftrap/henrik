@@ -1,11 +1,6 @@
 package com.github.victimoftrap.henrik.config;
 
-import com.github.victimoftrap.henrik.commands.ICommand;
-import com.github.victimoftrap.henrik.commands.TabCommand;
-import com.github.victimoftrap.henrik.commands.MouseEnterCommand;
-import com.github.victimoftrap.henrik.commands.MouseLeaveCommand;
-import com.github.victimoftrap.henrik.commands.ProblemChangedCommand;
-import com.github.victimoftrap.henrik.commands.ProblemSentCommand;
+import com.github.victimoftrap.henrik.commands.*;
 import com.github.victimoftrap.henrik.model.EventType;
 import com.github.victimoftrap.henrik.repository.EventRepository;
 
@@ -27,7 +22,8 @@ public class EventCommandsConfiguration {
                 Map.entry(EventType.MOUSE_ENTER_EVENT, new MouseEnterCommand(eventRepository)),
                 Map.entry(EventType.MOUSE_LEAVE_EVENT, new MouseLeaveCommand(eventRepository)),
                 Map.entry(EventType.PROBLEM_CHANGED_EVENT, new ProblemChangedCommand(eventRepository)),
-                Map.entry(EventType.PROBLEM_SENT_EVENT, new ProblemSentCommand(eventRepository))
+                Map.entry(EventType.PROBLEM_SENT_EVENT, new ProblemSentCommand(eventRepository)),
+                Map.entry(EventType.SOLUTION_CODE_SENT_EVENT, new SolutionCodeSentCommand(eventRepository))
         );
     }
 }
