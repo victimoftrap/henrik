@@ -12,7 +12,10 @@ import java.util.UUID;
 @Table(name = "problem_changed_events")
 public class ProblemChangedEvent extends EventDescription {
     @Column(name = "prev_title")
-    private String title;
+    private String problemTitle;
+
+    @Column(name = "prev_id")
+    private String problemId;
 
     @Column(name = "prev_url")
     private String url;
@@ -23,21 +26,32 @@ public class ProblemChangedEvent extends EventDescription {
     public ProblemChangedEvent(final UUID id,
                                final long contestId,
                                final long userId,
+                               final String userLogin,
                                final ZonedDateTime createdAt,
                                final EventType type,
-                               final String title,
-                               final String url) {
-        super(id, contestId, userId, createdAt, type);
-        this.title = title;
-        this.url = url;
+                               final String problemId,
+                               final String problemTitle,
+                               final String problemUrl) {
+        super(id, contestId, userId, userLogin, createdAt, type);
+        this.problemId = problemId;
+        this.problemTitle = problemTitle;
+        this.url = problemUrl;
     }
 
-    public String getTitle() {
-        return title;
+    public String getProblemTitle() {
+        return problemTitle;
     }
 
-    public void setTitle(final String title) {
-        this.title = title;
+    public void setProblemTitle(final String problemTitle) {
+        this.problemTitle = problemTitle;
+    }
+
+    public String getProblemId() {
+        return problemId;
+    }
+
+    public void setProblemId(final String problemId) {
+        this.problemId = problemId;
     }
 
     public String getUrl() {
@@ -54,18 +68,21 @@ public class ProblemChangedEvent extends EventDescription {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         ProblemChangedEvent that = (ProblemChangedEvent) o;
-        return Objects.equals(title, that.title) && Objects.equals(url, that.url);
+        return Objects.equals(problemId, that.problemId)
+                && Objects.equals(problemTitle, that.problemTitle)
+                && Objects.equals(url, that.url);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), title, url);
+        return Objects.hash(super.hashCode(), problemId, problemTitle, url);
     }
 
     @Override
     public String toString() {
         return "ProblemChangedEvent{" +
-                "title='" + title + '\'' +
+                "problemTitle='" + problemTitle + '\'' +
+                ", problemId='" + problemId + '\'' +
                 ", url='" + url + '\'' +
                 '}';
     }

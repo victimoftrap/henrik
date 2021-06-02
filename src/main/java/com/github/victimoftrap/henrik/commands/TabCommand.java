@@ -29,6 +29,7 @@ public class TabCommand implements ICommand {
                 UUID.randomUUID(),
                 request.getContestId(),
                 userId,
+                request.getUserLogin(),
                 createdAt,
                 EventType.TAB_EVENT,
                 eventJsonNode.get("url").asText(),

@@ -22,6 +22,9 @@ public abstract class EventDescription {
     @Column(name = "user_id")
     private long userId;
 
+    @Column(name = "user_login")
+    private String userLogin;
+
     @Column(name = "created_at")
     private ZonedDateTime createdAt;
 
@@ -35,6 +38,7 @@ public abstract class EventDescription {
     public EventDescription(final UUID id,
                             final long contestId,
                             final long userId,
+                            final String userLogin,
                             final ZonedDateTime createdAt,
                             final EventType type) {
         this.id = id;
@@ -68,6 +72,14 @@ public abstract class EventDescription {
         this.userId = userId;
     }
 
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(final String userLogin) {
+        this.userLogin = userLogin;
+    }
+
     public ZonedDateTime getCreatedAt() {
         return createdAt;
     }
@@ -92,13 +104,14 @@ public abstract class EventDescription {
         return contestId == that.contestId
                 && userId == that.userId
                 && Objects.equals(id, that.id)
+                && Objects.equals(userLogin, that.userLogin)
                 && Objects.equals(createdAt, that.createdAt)
                 && type == that.type;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, contestId, userId, createdAt, type);
+        return Objects.hash(id, contestId, userId, userLogin, createdAt, type);
     }
 
     @Override
@@ -107,6 +120,7 @@ public abstract class EventDescription {
                 "id=" + id +
                 ", contestId=" + contestId +
                 ", userId=" + userId +
+                ", userLogin=" + userLogin +
                 ", createdAt=" + createdAt +
                 ", type=" + type +
                 '}';

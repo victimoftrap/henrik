@@ -26,12 +26,13 @@ public class TabEvent extends EventDescription {
     public TabEvent(final UUID id,
                     final long contestId,
                     final long userId,
+                    final String userLogin,
                     final ZonedDateTime createdAt,
                     final EventType type,
                     final String url,
                     final boolean active,
                     final boolean incognito) {
-        super(id, contestId, userId, createdAt, type);
+        super(id, contestId, userId, userLogin, createdAt, type);
         this.url = url;
         this.active = active;
         this.incognito = incognito;

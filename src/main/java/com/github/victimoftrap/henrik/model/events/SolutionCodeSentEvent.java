@@ -13,6 +13,9 @@ import java.util.UUID;
 @Entity
 @Table(name = "solution_code_sent_events")
 public class SolutionCodeSentEvent extends EventDescription {
+    @Column(name = "problem_id")
+    private String problemId;
+
     @Column(name = "problem_title")
     private String problemTitle;
 
@@ -34,19 +37,30 @@ public class SolutionCodeSentEvent extends EventDescription {
     public SolutionCodeSentEvent(final UUID id,
                                  final long contestId,
                                  final long userId,
+                                 final String userLogin,
                                  final ZonedDateTime createdAt,
                                  final EventType type,
+                                 final String problemId,
                                  final String problemTitle,
                                  final String problemUrl,
                                  final String compiler,
                                  final String solutionType,
                                  final String source) {
-        super(id, contestId, userId, createdAt, type);
+        super(id, contestId, userId, userLogin, createdAt, type);
+        this.problemId = problemId;
         this.problemTitle = problemTitle;
         this.problemUrl = problemUrl;
         this.compiler = compiler;
         this.solutionType = solutionType;
         this.source = source;
+    }
+
+    public String getProblemId() {
+        return problemId;
+    }
+
+    public void setProblemId(final String problemId) {
+        this.problemId = problemId;
     }
 
     public String getProblemTitle() {
@@ -95,7 +109,8 @@ public class SolutionCodeSentEvent extends EventDescription {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         SolutionCodeSentEvent that = (SolutionCodeSentEvent) o;
-        return Objects.equals(problemTitle, that.problemTitle)
+        return Objects.equals(problemId, that.problemId)
+                && Objects.equals(problemTitle, that.problemTitle)
                 && Objects.equals(problemUrl, that.problemUrl)
                 && Objects.equals(compiler, that.compiler)
                 && Objects.equals(solutionType, that.solutionType)
@@ -104,13 +119,14 @@ public class SolutionCodeSentEvent extends EventDescription {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), problemTitle, problemUrl, compiler, solutionType, source);
+        return Objects.hash(super.hashCode(), problemId, problemTitle, problemUrl, compiler, solutionType, source);
     }
 
     @Override
     public String toString() {
         return "SolutionCodeSentEvent{" +
-                "problemTitle='" + problemTitle + '\'' +
+                "problemId='" + problemId + '\'' +
+                ", problemTitle='" + problemTitle + '\'' +
                 ", problemUrl='" + problemUrl + '\'' +
                 ", compiler='" + compiler + '\'' +
                 ", solutionType='" + solutionType + '\'' +

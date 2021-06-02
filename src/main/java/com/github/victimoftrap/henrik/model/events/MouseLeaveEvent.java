@@ -16,8 +16,9 @@ public class MouseLeaveEvent extends EventDescription {
     public MouseLeaveEvent(final UUID id,
                            final long contestId,
                            final long userId,
+                           final String userLogin,
                            final ZonedDateTime createdAt,
                            final EventType type) {
-        super(id, contestId, userId, createdAt, type);
+        super(id, contestId, userId, userLogin, createdAt, type);
     }
 }

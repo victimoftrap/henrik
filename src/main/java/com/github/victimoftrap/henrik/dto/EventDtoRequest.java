@@ -15,6 +15,9 @@ public class EventDtoRequest {
     private String userId;
 
     @NotBlank
+    private String userLogin;
+
+    @NotBlank
     private String createdAt;
 
     @ValidEventType
@@ -28,11 +31,13 @@ public class EventDtoRequest {
     public EventDtoRequest(
             @JsonProperty("contestId") final long contestId,
             @JsonProperty("userId") final String userId,
+            @JsonProperty("userLogin") final String userLogin,
             @JsonProperty("createdAt") final String createdAt,
             @JsonProperty("type") final String type,
             @JsonProperty("event") final JsonNode event) {
         this.contestId = contestId;
         this.userId = userId;
+        this.userLogin = userLogin;
         this.createdAt = createdAt;
         this.type = type;
         this.event = event;
@@ -44,6 +49,10 @@ public class EventDtoRequest {
 
     public String getUserId() {
         return userId;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
     }
 
     public String getCreatedAt() {
